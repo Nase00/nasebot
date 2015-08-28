@@ -26,7 +26,7 @@ gulp.task('dev', function() {
     .transform(babelify)
     .bundle()
     .pipe(source('index.js'))
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest('./scripts'));
 });
 
 gulp.task('default', ['dev'], function() {
