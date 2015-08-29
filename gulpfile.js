@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
+var babel = require("gulp-babel");
 var babelify = require('babelify');
 var browserify = require('browserify');
 var eslint = require('gulp-eslint');
@@ -19,14 +20,9 @@ gulp.task('lint', function () {
 });
 
 gulp.task('dev', function() {
-  browserify({
-      entries: './src/index.js',
-      debug: true
-    })
-    .transform(babelify)
-    .bundle()
-    .pipe(source('index.js'))
-    .pipe(gulp.dest('./scripts'));
+  return gulp.src("src/**/*")
+    .pipe(babel())
+    .pipe(gulp.dest("scripts"));
 });
 
 gulp.task('default', ['dev'], function() {
